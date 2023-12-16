@@ -8,7 +8,7 @@ public class DivisionByZeroException extends Exception {
 		this.dividendo = dividendo;
 	}
 	
-	public DivisionByZeroException (float dividendo) {
+	public DivisionByZeroException (double dividendo) {
 		this.dividendo = dividendo;
 	}
 	

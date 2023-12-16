@@ -5,43 +5,43 @@ import exceptions.DivisionByZeroException;
 public class Calculadora {
 	
 	//SOMA
-	public void somaInt(int a, int b){
+	public void soma(int a, int b){
 		
 		System.out.println(a + b);
 		
 	}
 
-	public void somaFloat(double a, double b) {
+	public void soma(double a, double b) {
 		
 		System.out.println(a + b);
 	}
 	
 	//SUBTRAÇÃO
-	public void subtrair(int a, int b){
+	public void subtrai(int a, int b){
 		
 		System.out.println(a - b);
 		
 	}
 	
-	public void subtrair(float a, float b) {
+	public void subtrai(double a, double b) {
 		
 		System.out.println(a - b);
 	}
 	
 	//PRODUTO
-	public void produtoInt(int a, int b){
+	public void produto(int a, int b){
 		
 		System.out.println(a * b);
 		
 	}
 
-	public void produtoFloat(float a, float b) {
+	public void produto(double a, double b) {
 		
 		System.out.println(a * b);
 	}
 	
 	//DIVISÃO
-	public void divisaoInt(int a, int b)
+	public void divisao(int a, int b)
 				throws DivisionByZeroException {
 		if (b == 0) {
 				throw new DivisionByZeroException(a);
@@ -51,7 +51,7 @@ public class Calculadora {
 	}
 	}
 
-	public void divisaoFloat(float a, float b)
+	public void divisao(double a, double b)
 				throws DivisionByZeroException {
 		
 		if (b == 0 || b == 0.0) {
