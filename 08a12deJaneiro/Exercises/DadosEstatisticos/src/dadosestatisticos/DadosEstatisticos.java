@@ -4,7 +4,7 @@ public interface DadosEstatisticos {
 	
 	public Object max();
 	public Object min();
-	public Object ordernar();
+	public void ordernar();
 	public Object buscar();
 
 }

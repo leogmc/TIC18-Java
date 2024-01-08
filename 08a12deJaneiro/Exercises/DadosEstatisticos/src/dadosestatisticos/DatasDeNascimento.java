@@ -19,26 +19,30 @@ public class DatasDeNascimento implements DadosEstatisticos {
 	}
 
 
-	public DatasDeNascimento max() {
+	public Object max() {
 		
-		Date maior = new Date(); 
+		Date maior = listaDatas.get(0); 
 		
 		for (Date data : listaDatas){
 			if (data.after(maior)) {
 				maior = data;
 			}
-			
-			return maior;
-			
 		}
+		return maior;
 		
 	}
-	
-	
+		
 
-	public Object min();
-	public Object ordernar();
-	public Object buscar();
+	public Object min() {
+		return null;
+	};
+	public void ordernar() {
+
+	};
+	
+	public Object buscar() {
+		return null;
+	};
 
 
 }
