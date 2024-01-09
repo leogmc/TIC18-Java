@@ -1,15 +1,14 @@
 package dadosestatisticos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 
 public class DatasDeNascimento implements DadosEstatisticos {
 	
 	private Date dataDeNascimento;
-	private ArrayList<Date> listaDatas = new ArrayList();
+	public ArrayList<Date> listaDatas;
 	
-	
-
 	public Date getDataDeNascimento() {
 		return dataDeNascimento;
 	}
@@ -17,7 +16,6 @@ public class DatasDeNascimento implements DadosEstatisticos {
 	public ArrayList<Date> getListaDatas() {
 		return listaDatas;
 	}
-
 
 	public Object max() {
 		
@@ -32,15 +30,30 @@ public class DatasDeNascimento implements DadosEstatisticos {
 		
 	}
 		
-
 	public Object min() {
-		return null;
-	};
-	public void ordernar() {
-
+		
+		Date menor = listaDatas.get(0); 
+		
+		for (Date data : listaDatas){
+			if (data.before(menor)) {
+				menor = data;
+			}
+		}
+		return menor;
 	};
 	
-	public Object buscar() {
+	public void ordernar() {
+		Collections.sort(listaDatas);
+	};
+	
+	public Object buscar(Object dataProcurada) {
+		for (Date data : listaDatas) {
+			if (data.equals(dataProcurada)) {
+				System.out.println("Data encontrada! A data procurada: " + dataProcurada + " existe na lista! ");
+				return data;
+			}
+		}
+		System.out.println("Data não encontrada.");
 		return null;
 	};
 
