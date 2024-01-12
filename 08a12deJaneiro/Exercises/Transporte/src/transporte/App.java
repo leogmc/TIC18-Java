@@ -35,15 +35,27 @@ public class App {
 		switch (opcao) {
 		
 		case 1:	
-			cadastros.cadastrarVeiculo();
+			try {
+				cadastros.cadastrarVeiculo();
+			} catch (Exception e) {
+				System.out.println("Erro ao abrir arquivo.");
+			}
 			break;
 			
 		case 2:
-			cadastros.cadastrarMotorista();
+			try {
+				cadastros.cadastrarMotorista();
+			} catch (Exception e) {
+				System.out.println("Erro ao abrir arquivo.");
+			}
 			break;
 		
 		case 3:
-			cadastros.cadastrarCobrador();
+			try {
+				cadastros.cadastrarCobrador();
+			} catch (Exception e) {
+				System.out.println("Erro ao abrir arquivo.");
+			}
 			break;
 			
 		case 4:
