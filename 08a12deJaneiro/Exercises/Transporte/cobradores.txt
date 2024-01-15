@@ -1,0 +1,6 @@
+Nome do cobrador: Robson Dantas
+CPF: 1234567890
+--------------------
+Nome do cobrador: Edson Paz
+CPF: 1234560987
+--------------------

@@ -1,104 +1,57 @@
 package transporte;
 
-import cadastros.Cadastro;
-
 import java.util.Scanner;
 
 public class App {
-	
+
 	public static void main(String[] args) {
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		Cadastro cadastros = new Cadastro();
-		
+
+		Scanner scanner = new Scanner(System.in);		
+		Menus menus = new Menus();
+				
 		int opcao;
-		
+				
 		do {
-		System.out.println("======= PAINEL DE CONTROLE - TRANSPORTE VIÁRIO =======");
-		System.out.println("");
-		System.out.println("[1] - Cadastro de veículo");
-		System.out.println("[2] - Cadastro de motorista");
-		System.out.println("[3] - Cadastro de cobrador");
-		System.out.println("[4] - Cadastro de passageiro");
-		System.out.println("[5] - Cadastro de ponto de parada");
-		System.out.println("[6] - Cadastro de trajeto");
-		System.out.println("[7] - Registro de jornada");
-		System.out.println("[8] - Registro de início de trajeto");
-		System.out.println("[9] - Registro de embarque com cartão");
-		System.out.println("[10] - Registro de checkpoint");
-		System.out.println("[0] - Sair.");
-		System.out.println("");
-		System.out.println("Escolha uma opção: ");
-		opcao = scanner.nextInt();
-		
-		switch (opcao) {
-		
-		case 1:	
-			try {
-				cadastros.cadastrarVeiculo();
-			} catch (Exception e) {
-				System.out.println("Erro ao abrir arquivo.");
-			}
-			break;
-			
-		case 2:
-			try {
-				cadastros.cadastrarMotorista();
-			} catch (Exception e) {
-				System.out.println("Erro ao abrir arquivo.");
-			}
-			break;
-		
-		case 3:
-			try {
-				cadastros.cadastrarCobrador();
-			} catch (Exception e) {
-				System.out.println("Erro ao abrir arquivo.");
-			}
-			break;
-			
-		case 4:
-			cadastros.cadastrarPassageiro();
-			break;
-			
-		case 5:
-			cadastros.cadastrarPontosDeParada();
-			break;
-			
-		case 6:
-			cadastros.cadastrarTrajeto();
-			break;
-			
-		case 7:
-			cadastros.registraJornada();
-			break;
-		
-		case 8:
-			cadastros.registraInicioDeTrajeto();
-			break;
-		
-		case 9:
-			cadastros.registraEmbarque();
-			break;
-		
-		case 10:
-			cadastros.registraCheckpoint();
-			break;
-			
-		case 0:
-			System.out.println("Programa finalizado!");
-			return;
-									
-		default:
-			System.out.println("Opção Inválida.");
-			break;
-		}
-		
-		} while (opcao != 0);
+			System.out.println("======= PAINEL DE CONTROLE - TRANSPORTE VIÁRIO =======");
+			System.out.println("");
+			System.out.println("[1] - Cadastrar dados");
+			System.out.println("[2] - Alterar dados");
+			System.out.println("[3] - Excluir dados");
+			System.out.println("[0] - Sair.");
+			System.out.println("");
+			System.out.println("Escolha uma opção: ");
+			opcao = scanner.nextInt();
+				
+			switch (opcao) {
+				
+			case 1:
+				menus.runMenuCadastro();	
+				break;
 					
-		scanner.close(); // Fecha o scanner.
-	}
-	
-	
+			case 2:
+				menus.runMenuAlteracao();
+				break;
+				
+			case 3:
+				menus.runMenuExclusao();
+				break;
+						
+			case 0:
+				System.out.println("Programa finalizado!");
+				return;
+											
+			default:
+				System.out.println("Opção Inválida.");
+				break;			
+			}
+				
+		} while (opcao != 0);
+							
+				scanner.close(); // Fecha o scanner.
+			}
+				
+
+
 }
+
+

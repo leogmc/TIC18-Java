@@ -1,0 +1,8 @@
+Nome do passageiro: Leandro Garcia
+CPF: 1234567656
+Tipo do cartão: 1
+--------------------
+Nome do passageiro: Bruna Pereira
+CPF: 3425565686
+Tipo do cartão: 3
+--------------------

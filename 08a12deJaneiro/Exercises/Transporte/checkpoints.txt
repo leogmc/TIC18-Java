@@ -1,0 +1,4 @@
+Jornada: [Trechos: [Trecho: Cruz das Almas - Governador Mangabeira| Intervalo estimado: 10 minutos, Trecho: Governador Mangabeira - Cruz das Almas| Intervalo estimado: 15 minutos]]
+Trajeto: [Trecho: Cruz das Almas - Governador Mangabeira| Intervalo estimado: 10 minutos, Trecho: Governador Mangabeira - Cruz das Almas| Intervalo estimado: 15 minutos]
+Checkpoint: Thu Nov 21 09:09:09 BRST 2002
+--------------------

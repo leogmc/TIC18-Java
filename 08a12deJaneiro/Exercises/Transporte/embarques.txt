@@ -1,0 +1,6 @@
+Passageiro: Bruna Pereira
+CPF: 3425565686
+Ponto de embarque: Cruz das Almas
+Tipo de cartão: 3
+Horário de embarque: 3
+--------------------

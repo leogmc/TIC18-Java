@@ -1,7 +1,9 @@
 package cadastros;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.ParseException;
@@ -20,7 +22,7 @@ import transporte.Trajeto;
 import transporte.Trecho;
 import transporte.Veiculo;
 
-public class Cadastro {
+public class CRUD {
 
 	private Scanner scanner = new Scanner(System.in);
 
@@ -35,21 +37,23 @@ public class Cadastro {
 	private ArrayList<Trajeto> listaTrajetosJornada = new ArrayList<>();
 	private ArrayList<Jornada> listaJornadas = new ArrayList<>();
 	private ArrayList<Embarque> listaEmbarques = new ArrayList<>();
+	
+	// Métodos de Cadastros
 
 	public void cadastrarVeiculo() throws Exception {
-		
+
 		File arquivo = new File("veiculos.txt");
-		
+
 		if (!arquivo.exists()) {
-			arquivo.createNewFile();	
+			arquivo.createNewFile();
 		}
-		
+
 		FileWriter fw = new FileWriter(arquivo, true);
 		BufferedWriter bw = new BufferedWriter(fw);
-			
+
 		while (true) {
 			System.out.println("Digite o modelo do veículo (ou digite 'x' para encerrar):");
-			String modelo = scanner.nextLine();	
+			String modelo = scanner.nextLine();
 
 			if (modelo.equalsIgnoreCase("x")) {
 				break;
@@ -63,33 +67,31 @@ public class Cadastro {
 
 			System.out.println("Veículo cadastrado com sucesso!");
 			System.out.println(" ");
-			
+
 			bw.write("Modelo: " + modelo);
 			bw.newLine();
 			bw.write("Placa: " + placa);
 			bw.newLine();
 			bw.write("--------------------");
 			bw.newLine();
-								
+
 		}
-		
+
 		bw.close();
 		fw.close();
 	}
 
 	public void cadastrarMotorista() throws Exception {
-		
+
 		File arquivo = new File("motoristas.txt");
-		
+
 		if (!arquivo.exists()) {
-			arquivo.createNewFile();	
+			arquivo.createNewFile();
 		}
-		
+
 		FileWriter fw = new FileWriter(arquivo, true);
 		BufferedWriter bw = new BufferedWriter(fw);
-		
-		
-		
+
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
 			String nome = scanner.nextLine();
@@ -103,21 +105,10 @@ public class Cadastro {
 
 			Motorista motorista = new Motorista(nome, cpf);
 			listaMotoristas.add(motorista);
-			 
-			
-			//IMPORTANTE!!! REVISTAR ESSA PARTE PARA UTILIZAR EM OUTROS TRECHOS DE CÓDIGO
-			if(listaMotoristas.get(0).getClass().equals(Motorista.class)) {
-				System.out.println("é o motorista.");
-			}
-			
-			if(listaMotoristas.get(0).getClass().equals(Passageiro.class)) {
-				System.out.println("é o passageiro.");
-			}
-			 
 
 			System.out.println("Motorista cadastrado com sucesso!");
 			System.out.println(" ");
-			
+
 			bw.write("Nome do motorista: " + nome);
 			bw.newLine();
 			bw.write("CPF: " + cpf);
@@ -125,22 +116,22 @@ public class Cadastro {
 			bw.write("--------------------");
 			bw.newLine();
 		}
-		
+
 		bw.close();
 		fw.close();
 	}
 
 	public void cadastrarCobrador() throws Exception {
-		
+
 		File arquivo = new File("cobradores.txt");
-		
+
 		if (!arquivo.exists()) {
-			arquivo.createNewFile();	
+			arquivo.createNewFile();
 		}
-		
+
 		FileWriter fw = new FileWriter(arquivo, true);
 		BufferedWriter bw = new BufferedWriter(fw);
-		
+
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
 			String nome = scanner.nextLine();
@@ -154,7 +145,7 @@ public class Cadastro {
 
 			Cobrador cobrador = new Cobrador(nome, cpf);
 			listaCobradores.add(cobrador);
-			
+
 			bw.write("Nome do cobrador: " + nome);
 			bw.newLine();
 			bw.write("CPF: " + cpf);
@@ -165,12 +156,22 @@ public class Cadastro {
 			System.out.println("Cobrador cadastrado com sucesso!");
 			System.out.println(" ");
 		}
-		
+
 		bw.close();
 		fw.close();
 	}
 
-	public void cadastrarPassageiro() {
+	public void cadastrarPassageiro() throws Exception {
+
+		File arquivo = new File("passageiros.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+
 		while (true) {
 
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
@@ -196,12 +197,34 @@ public class Cadastro {
 			Passageiro passageiro = new Passageiro(nome, cpf, tipoCartao);
 			listaPassageiros.add(passageiro);
 
+			bw.write("Nome do passageiro: " + nome);
+			bw.newLine();
+			bw.write("CPF: " + cpf);
+			bw.newLine();
+			bw.write("Tipo do cartão: " + tipoCartao);
+			bw.newLine();
+			bw.write("--------------------");
+			bw.newLine();
+
 			System.out.println("Passageiro cadastrado com sucesso!");
 			System.out.println(" ");
 		}
+
+		bw.close();
+		fw.close();
 	}
 
-	public void cadastrarPontosDeParada() {
+	public void cadastrarPontosDeParada() throws Exception {
+
+		File arquivo = new File("pontosDeParada.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+
 		while (true) {
 			System.out.println("Digite o nome do ponto: (ou digite 'x' para encerrar):");
 			String nomePonto = scanner.nextLine();
@@ -213,12 +236,30 @@ public class Cadastro {
 			PontoDeParada pontoDeParada = new PontoDeParada(nomePonto);
 			listaPontosDeParada.add(pontoDeParada);
 
+			bw.write("Ponto de parada: " + nomePonto);
+			bw.newLine();
+			bw.write("--------------------");
+			bw.newLine();
+
 			System.out.println("Ponto de parada cadastrado com sucesso!");
 			System.out.println(" ");
 		}
+
+		bw.close();
+		fw.close();
 	}
 
-	public void cadastrarTrecho() {
+	public void cadastrarTrecho() throws Exception {
+
+		File arquivo = new File("trechos.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+
 		while (true) {
 			System.out.println("--------- Cadastro de trecho -----------");
 			System.out.println("----- Pontos de Parada disponíveis -----");
@@ -255,6 +296,13 @@ public class Cadastro {
 			Trecho trecho = new Trecho(pontos, intervalo);
 			listaTrechos.add(trecho);
 
+			bw.write("Trecho: " + pontos);
+			bw.newLine();
+			bw.write("Duração estimada: " + intervalo);
+			bw.newLine();
+			bw.write("--------------------");
+			bw.newLine();
+
 			System.out.println("Trecho cadastrado com sucesso!");
 			System.out.println(" ");
 
@@ -265,13 +313,32 @@ public class Cadastro {
 				break; // Sai do loop se o usuário digitar 'x'
 			}
 		}
+
+		bw.close();
+		fw.close();
 	}
 
-	public void cadastrarTrajeto() {
-		cadastrarTrecho();
+	public void cadastrarTrajeto() throws Exception {
+		
+		File arquivo = new File("trajetos.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		try {
+			cadastrarTrecho();
+		} catch (Exception e) {
+			System.out.println("Erro ao cadastrar trecho.");
+		}
+		
 		System.out.println(" ");
 		System.out.println("----- CADASTRO DE TRAJETO -----");
 		System.out.println(" ");
+		
 		ArrayList<Trecho> trechos = getListaTrechos();
 
 		while (true) {
@@ -297,19 +364,35 @@ public class Cadastro {
 			if (sair.equalsIgnoreCase("x")) {
 				break;
 			}
-
 		}
 
 		Trajeto trajeto = new Trajeto(listaTrechosTrajeto);
 
 		listaTrajetos.add(trajeto);
+		
+		bw.write("Trajeto: " + listaTrechosTrajeto);
+		bw.newLine();
+		bw.write("--------------------");
+		bw.newLine();
 
 		System.out.println("Trajeto cadastrado com sucesso!");
 		System.out.println(" ");
+		
+		bw.close();
+		fw.close();
 
 	}
 
-	public void registraJornada() {
+	public void registraJornada() throws Exception {
+		
+		File arquivo = new File("jornadas.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
 
 		// Exibindo os trajetos disponíveis
 		ArrayList<Trajeto> trajetos = getListaTrajetos();
@@ -350,7 +433,7 @@ public class Cadastro {
 
 			Motorista motoristaJornada = motoristas.get(motorista - 1);
 
-			// Exibindo os motoristas disponíveis
+			// Exibindo os veiculos disponíveis
 			ArrayList<Veiculo> veiculos = getListaVeiculos();
 			for (int i = 0; i < veiculos.size(); i++) {
 				System.out.println("----------------------------------");
@@ -385,26 +468,48 @@ public class Cadastro {
 				System.out.println("Selecione o cobrador desejado (ou digite '0' para encerrar):");
 				int cobrador = scanner.nextInt();
 				scanner.nextLine();
+				
 
-				System.out.println("Jornada cadastrada com sucesso!");
-				System.out.println(" ");
-
-				if (cobrador == 0) {
-					break;
+				if (cobrador == 0) {	
+						break;
 				}
 
 				Cobrador cobradorJornada = cobradores.get(cobrador - 1);
 
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, cobradorJornada, veiculoJornada);
 				listaJornadas.add(jornada);
+				
+				bw.write("Trajetos: " + trajetos);
+				bw.newLine();
+				bw.write("Motorista: " + motoristaJornada);
+				bw.newLine();
+				bw.write("Cobrador: " + cobradorJornada);
+				bw.newLine();
+				bw.write("Veículo: " + veiculoJornada);
+				bw.newLine();
+				bw.write("--------------------");
+				bw.newLine();
 
 			} else {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, veiculoJornada);
 				listaJornadas.add(jornada);
+				
+				bw.write("Trajetos: " + trajetos);
+				bw.newLine();
+				bw.write("Motorista: " + motorista);
+				bw.newLine();
+				bw.write("Veículo: " + veiculo);
+				bw.newLine();
+				bw.write("--------------------");
+				bw.newLine();
 			}
-
 		}
-
+			
+		System.out.println("Jornada cadastrada com sucesso!");
+		System.out.println(" ");
+		
+		bw.close();
+		fw.close();
 	}
 
 	public void registraInicioDeTrajeto() {
@@ -413,9 +518,9 @@ public class Cadastro {
 		for (int i = 0; i < jornadas.size(); i++) {
 			System.out.println("----------------------------------");
 			System.out.println("Jornada [" + (i + 1) + "] " + jornadas.get(i).getTrajetos());
-			System.out.println(jornadas.get(i).getMotorista().getNome());
-			System.out.println(jornadas.get(i).getCobrador().getNome());
-			System.out.println(jornadas.get(i).getVeiculo().getModelo());
+			System.out.println("Motorista: " + jornadas.get(i).getMotorista().getNome());
+			System.out.println("Cobrador: " + jornadas.get(i).getCobrador().getNome());
+			System.out.println("veículo: " + jornadas.get(i).getVeiculo().getModelo());
 		}
 
 		System.out.println("Selecione a jornada desejada: ");
@@ -467,8 +572,17 @@ public class Cadastro {
 		}
 	}
 
-	public void registraEmbarque() {
+	public void registraEmbarque() throws Exception {
+		
+		File arquivo = new File("embarques.txt");
 
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
 		// Exibindo os passageiros disponíveis
 		ArrayList<Passageiro> passageiros = getListaPassageiros();
 		for (int i = 0; i < passageiros.size(); i++) {
@@ -498,11 +612,37 @@ public class Cadastro {
 
 		Embarque registro = new Embarque(passageiro, pontoDeEmbarque);
 		listaEmbarques.add(registro);
+		
+		bw.write("Passageiro: " + passageiro.getNome());
+		bw.newLine();
+		bw.write("CPF: " + passageiro.getCpf());
+		bw.newLine();
+		bw.write("Ponto de embarque: " + pontoDeEmbarque.getPonto());
+		bw.newLine();
+		bw.write("Tipo de cartão: " + passageiro.getTipoCartao());
+		bw.newLine();
+		bw.write("Horário de embarque: " + passageiro.getTipoCartao());
+		bw.newLine();
+		bw.write("--------------------");
+		bw.newLine();
 
 		exibirInformacoes();
+		
+		bw.close();
+		fw.close();
 	}
 
-	public void registraCheckpoint() {
+	public void registraCheckpoint() throws Exception {
+		
+		File arquivo = new File("checkpoints.txt");
+
+		if (!arquivo.exists()) {
+			arquivo.createNewFile();
+		}
+
+		FileWriter fw = new FileWriter(arquivo, true);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
 		// Exibindo as jornadas disponíveis
 		ArrayList<Jornada> jornadas = getListaJornadas();
 		for (int i = 0; i < jornadas.size(); i++) {
@@ -543,16 +683,74 @@ public class Cadastro {
 						Date novaData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(checkpoint);
 						trajetoSelecionado.setCheckpoint(novaData);
 						System.out.println("Checkpoint cadastrado com sucesso para: " + novaData);
+						
+						bw.write("Jornada: " + jornadaSelecionada.getTrajetos());
+						bw.newLine();
+						bw.write("Trajeto: " + trajetoSelecionado.getTrechos());
+						bw.newLine();
+						bw.write("Checkpoint: " + novaData);
+						bw.newLine();
+						bw.write("--------------------");
+						bw.newLine();
+					
 					} catch (ParseException e) {
 						System.out.println("Formato de data inválido. Por favor, insira a data no formato correto.");
 					}
 				}
 			}
-		}		
+		}
+		
+		bw.close();
+		fw.close();
 	}
 
-	// Métodos para outras funcionalidades de cadastro podem ser adicionados aqui
+	// Métodos de alteração
+	
+	public void alterarDados(ArrayList<?> lista, String tipoDeDado) throws Exception {
+		
+		String nomeDoArquivo = tipoDeDado;
+		FileReader fr;
+		
+			fr = new FileReader(nomeDoArquivo);
+			BufferedReader br = new BufferedReader(fr);
+			
+			while (br.ready()) {
+				String linha = br.readLine();
+				System.out.println(linha);
+			}
+			
+			br.close();
+			fr.close();
+		
+		File arquivo = new File(tipoDeDado);
 
+		FileWriter fw = new FileWriter(arquivo);
+		BufferedWriter bw = new BufferedWriter(fw);
+		
+		
+			if (lista.get(0).getClass().equals(Veiculo.class)) {
+											
+					
+									
+			}
+			
+			
+			if (lista.get(0).getClass().equals(Passageiro.class)) {
+				System.out.println("é o passageiro.");
+			}
+			
+			bw.close();
+			fw.close();	
+				
+	}
+			
+		
+	
+	
+	
+	
+	
+	
 	public void fecharScanner() {
 		scanner.close();
 	}
