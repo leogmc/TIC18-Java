@@ -148,7 +148,7 @@ public class Menus {
 
 			case 1:
 				try {
-					crud.alterar("veiculos.txt");
+					crud.alterar("veiculos.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -156,7 +156,7 @@ public class Menus {
 
 			case 2:
 				try {
-					crud.alterar("motoristas.txt");
+					crud.alterar("motoristas.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -165,7 +165,7 @@ public class Menus {
 
 			case 3:
 				try {
-					crud.alterar("cobradores.txt");
+					crud.alterar("cobradores.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -174,7 +174,7 @@ public class Menus {
 
 			case 4:
 				try {
-					crud.alterar("passageiros.txt");
+					crud.alterar("passageiros.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -183,7 +183,7 @@ public class Menus {
 
 			case 5:
 				try {
-					crud.alterar("pontosDeParada.txt");
+					crud.alterar("pontosDeParada.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -192,7 +192,7 @@ public class Menus {
 
 			case 6:
 				try {
-					crud.alterar("trajetos.txt");
+					crud.alterar("trajetos.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -201,14 +201,14 @@ public class Menus {
 
 			case 7:
 				try {
-					crud.alterar("jornadas.txt");
+					crud.alterar("jornadas.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
 
 			case 8:
 				try {
-					crud.alterar("embarques.txt");
+					crud.alterar("embarques.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}
@@ -217,7 +217,7 @@ public class Menus {
 				
 			case 9:
 				try {
-					crud.alterar("trechos.txt");
+					crud.alterar("trechos.json");
 				} catch (Exception e) {
 					System.out.println("Erro ao abrir arquivo.");
 				}

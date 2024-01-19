@@ -3,6 +3,7 @@ package cadastros;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.text.ParseException;
@@ -10,6 +11,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import transporte.Cobrador;
 import transporte.Embarque;
@@ -36,19 +41,40 @@ public class CRUD {
 	private ArrayList<Trajeto> listaTrajetosJornada = new ArrayList<>();
 	private ArrayList<Jornada> listaJornadas = new ArrayList<>();
 	private ArrayList<Embarque> listaEmbarques = new ArrayList<>();
+	
+	//Método de inicialização
+	
+	public void inicializa() throws Exception {
+			
+		try( FileReader fr = new FileReader("veiculos.json")){
+		
+		
+		JSONArray lista = new JSONArray(new JSONTokener(fr));
+			
+		}
+		
+		ArrayList<>
+		
+		
+		
+		
+		
+		
+	}
 
 	// Métodos de Cadastros
 
 	public void cadastrarVeiculo() throws Exception {
 
-		File arquivo = new File("veiculos.txt");
-
+		File arquivo = new File("veiculos.json");
+			
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-
-		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
+		
+		JSONObject json = new JSONObject();
+				
+		FileWriter fw = new FileWriter(arquivo);
 
 		while (true) {
 			System.out.println("Digite o modelo do veículo (ou digite 'x' para encerrar):");
@@ -66,26 +92,30 @@ public class CRUD {
 
 			System.out.println("Veículo cadastrado com sucesso!");
 			System.out.println(" ");
-
-			bw.write("Modelo: " + modelo + " | " + "Placa: " + placa + ";");
-			bw.newLine();
+				
+//			json.put("modelo", modelo);
+//			json.put("placa", placa);
+			
+			json.put("veiculos", listaVeiculos);
+				
 
 		}
-
-		bw.close();
+		
+		fw.write(json.toString());
 		fw.close();
 	}
 
 	public void cadastrarMotorista() throws Exception {
 
-		File arquivo = new File("motoristas.txt");
+		File arquivo = new File("motoristas.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
@@ -104,24 +134,29 @@ public class CRUD {
 			System.out.println("Motorista cadastrado com sucesso!");
 			System.out.println(" ");
 
-			bw.write("Motorista: " + nome + " | " + "CPF: " + cpf + ";");
-			bw.newLine();
+			json.put("nome", nome);
+			json.put("cpf", cpf);
+			
+			fw.write(json.toString());
+			
 		}
 
-		bw.close();
+		
 		fw.close();
 	}
 
 	public void cadastrarCobrador() throws Exception {
 
-		File arquivo = new File("cobradores.txt");
+		File arquivo = new File("cobradores.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
+	
 
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
@@ -136,28 +171,33 @@ public class CRUD {
 
 			Cobrador cobrador = new Cobrador(nome, cpf);
 			listaCobradores.add(cobrador);
-
-			bw.write("Cobrador: " + nome + " | " + "CPF: " + cpf + ";");
-			bw.newLine();
-
+			
+			json.put("nome", nome);
+			json.put("cpf", cpf);
+			
+			fw.write(json.toString());json.put("nome", nome);
+			json.put("cpf", cpf);
+			
+			fw.write(json.toString());
+		
 			System.out.println("Cobrador cadastrado com sucesso!");
 			System.out.println(" ");
 		}
 
-		bw.close();
 		fw.close();
 	}
 
 	public void cadastrarPassageiro() throws Exception {
 
-		File arquivo = new File("passageiros.txt");
+		File arquivo = new File("passageiros.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		while (true) {
 
@@ -184,27 +224,30 @@ public class CRUD {
 			Passageiro passageiro = new Passageiro(nome, cpf, tipoCartao);
 			listaPassageiros.add(passageiro);
 
-			bw.write("Passageiro: " + nome + " | " + "CPF: " + cpf + " | " + "Tipo do cartão: " + tipoCartao);
-			bw.newLine();
+			json.put("nome", nome);
+			json.put("cpf", cpf);
+			json.put("tipoCartao", tipoCartao);
+			
+			fw.write(json.toString());
 
 			System.out.println("Passageiro cadastrado com sucesso!");
 			System.out.println(" ");
 		}
 
-		bw.close();
 		fw.close();
 	}
 
 	public void cadastrarPontosDeParada() throws Exception {
 
-		File arquivo = new File("pontosDeParada.txt");
+		File arquivo = new File("pontosDeParada.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		while (true) {
 			System.out.println("Digite o nome do ponto: (ou digite 'x' para encerrar):");
@@ -217,27 +260,28 @@ public class CRUD {
 			PontoDeParada pontoDeParada = new PontoDeParada(nomePonto);
 			listaPontosDeParada.add(pontoDeParada);
 
-			bw.write("Ponto de parada: " + nomePonto + ";");
-			bw.newLine();
-
+			json.put("pontoDeParada", pontoDeParada);
+				
+			fw.write(json.toString());
+		
 			System.out.println("Ponto de parada cadastrado com sucesso!");
 			System.out.println(" ");
 		}
 
-		bw.close();
 		fw.close();
 	}
 
 	public void cadastrarTrecho() throws Exception {
 
-		File arquivo = new File("trechos.txt");
+		File arquivo = new File("trechos.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		while (true) {
 			System.out.println("--------- Cadastro de trecho -----------");
@@ -275,8 +319,11 @@ public class CRUD {
 			Trecho trecho = new Trecho(pontos, intervalo);
 			listaTrechos.add(trecho);
 
-			bw.write("Trecho: " + pontos + " | " + "Duração estimada: " + intervalo + "min");
-			bw.newLine();
+				
+			json.put("trecho", pontos);
+			json.put("duracaoEstimada", intervalo);
+			
+			fw.write(json.toString());
 
 			System.out.println("Trecho cadastrado com sucesso!");
 			System.out.println(" ");
@@ -289,20 +336,21 @@ public class CRUD {
 			}
 		}
 
-		bw.close();
+		
 		fw.close();
 	}
 
 	public void cadastrarTrajeto() throws Exception {
 
-		File arquivo = new File("trajetos.txt");
+		File arquivo = new File("trajetos.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		try {
 			cadastrarTrecho();
@@ -344,28 +392,30 @@ public class CRUD {
 		Trajeto trajeto = new Trajeto(listaTrechosTrajeto);
 
 		listaTrajetos.add(trajeto);
-
-		bw.write("Trajeto: " + listaTrechosTrajeto + ";");
-		bw.newLine();
+		
+		json.put("trajeto", listaTrechosTrajeto);
+		
+		
+		fw.write(json.toString());
 
 		System.out.println("Trajeto cadastrado com sucesso!");
 		System.out.println(" ");
-
-		bw.close();
+	
 		fw.close();
 
 	}
 
 	public void registraJornada() throws Exception {
 
-		File arquivo = new File("jornadas.txt");
+		File arquivo = new File("jornadas.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		// Exibindo os trajetos disponíveis
 		ArrayList<Trajeto> trajetos = getListaTrajetos();
@@ -451,24 +501,29 @@ public class CRUD {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, cobradorJornada, veiculoJornada);
 				listaJornadas.add(jornada);
 
-				bw.write("Trajetos: " + trajetos + " | " + "Motorista: " + motoristaJornada.getNome() + " | " + "Cobrador: "
-						+ cobradorJornada.getNome() + " | " + "Veículo: " + veiculoJornada.getModelo() + ";");
-				bw.newLine();
+					
+				json.put("trajetos", trajetos);
+				json.put("motorista", motoristaJornada.getNome());
+				json.put("cobrador", cobradorJornada.getNome());
+				json.put("veiculo", veiculoJornada.getModelo());
+						
+				fw.write(json.toString());
 
 			} else {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, veiculoJornada);
 				listaJornadas.add(jornada);
 
-				bw.write("Trajetos: " + trajetos + " | " + "Motorista: " + motoristaJornada.getNome() + " | " + "Veículo: "
-						+ veiculoJornada.getModelo() + ";");
-				bw.newLine();
+				json.put("trajetos", trajetos);
+				json.put("motorista", motoristaJornada.getNome());
+				json.put("veiculo", veiculoJornada.getModelo());
+						
+				fw.write(json.toString());
 			}
 		}
 
 		System.out.println("Jornada cadastrada com sucesso!");
 		System.out.println(" ");
 
-		bw.close();
 		fw.close();
 	}
 
@@ -538,14 +593,15 @@ public class CRUD {
 
 	public void registraEmbarque() throws Exception {
 
-		File arquivo = new File("embarques.txt");
+		File arquivo = new File("embarques.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		// Exibindo os passageiros disponíveis
 		ArrayList<Passageiro> passageiros = getListaPassageiros();
@@ -576,28 +632,31 @@ public class CRUD {
 
 		Embarque registro = new Embarque(passageiro, pontoDeEmbarque);
 		listaEmbarques.add(registro);
-
-		bw.write("Passageiro: " + passageiro.getNome() + " | " + "CPF: " + passageiro.getCpf() + " | "
-				+ "Tipo de cartão: " + passageiro.getTipoCartao() + " | " + "Ponto de embarque: "
-				+ pontoDeEmbarque.getPonto() + " | " + "Horário de embarque: " + registro.getDataHoraEmbarque());
-		bw.newLine();
+	
+		json.put("passageiro", passageiro.getNome());
+		json.put("cpf", passageiro.getCpf());
+		json.put("tipoCartao", passageiro.getTipoCartao());
+		json.put("horarioEmbarque", registro.getDataHoraEmbarque());
+				
+		fw.write(json.toString());
 
 		exibirInformacoes();
 
-		bw.close();
+
 		fw.close();
 	}
 
 	public void registraCheckpoint() throws Exception {
 
-		File arquivo = new File("checkpoints.txt");
+		File arquivo = new File("checkpoints.json");
 
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
+		
+		JSONObject json = new JSONObject();
 
 		FileWriter fw = new FileWriter(arquivo, true);
-		BufferedWriter bw = new BufferedWriter(fw);
 
 		// Exibindo as jornadas disponíveis
 		ArrayList<Jornada> jornadas = getListaJornadas();
@@ -639,10 +698,12 @@ public class CRUD {
 						Date novaData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(checkpoint);
 						trajetoSelecionado.setCheckpoint(novaData);
 						System.out.println("Checkpoint cadastrado com sucesso para: " + novaData);
-
-						bw.write("Jornada: " + jornadaSelecionada + " | " + "Trajeto: " + trajetoSelecionado + " | "
-								+ "Checkpoint: " + novaData + ";");
-						bw.newLine();
+					
+						json.put("jornada", jornadaSelecionada);
+						json.put("trajeto", trajetoSelecionado);
+						json.put("checkpoint", novaData);
+										
+						fw.write(json.toString());
 
 					} catch (ParseException e) {
 						System.out.println("Formato de data inválido. Por favor, insira a data no formato correto.");
@@ -651,10 +712,10 @@ public class CRUD {
 			}
 		}
 
-		bw.close();
 		fw.close();
 	}
 
+	
 	//Método para alterar dados
 	public void alterar(String nomeDoArquivo) throws Exception {
 
@@ -667,6 +728,7 @@ public class CRUD {
 
 		fr = new FileReader(arquivo);
 		BufferedReader br = new BufferedReader(fr);
+		
 
 		while (br.ready()) {
 			String linha = br.readLine();
