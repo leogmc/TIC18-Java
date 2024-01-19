@@ -11,8 +11,6 @@ public class Filme {
 	private int ano;
 	private String genero;
 	private ArrayList<String> elenco;
-	
-	
 
 	// GETTERS AND SETTERS
 	public ArrayList<String> getElenco() {
@@ -51,7 +49,7 @@ public class Filme {
 	public static void main(String[] args) {
 
 		// é necessário usar o caractere de escape "\" para poder inserir aspas em uma string sem fechar
-		String jsonString = "{\"aitulo\":\"Os Arquivos JSON\",\"ano\":\"1998\",\"genero\":\"ficção\"}";
+		String jsonString = "{\"titulo\":\"Os Arquivos JSON\",\"ano\":\"1998\",\"genero\":\"ficção\"}";
 			
 		//Criando um objeto JSON
 		JSONObject jsonObj = new JSONObject(jsonString);
@@ -61,7 +59,7 @@ public class Filme {
 		//Adicionando arquivos 
 		Filme filme = new Filme();
 
-		filme.setTitulo(jsonObj.getString("aitulo"));
+		filme.setTitulo(jsonObj.getString("titulo"));
 		filme.setAno(Integer.parseInt(jsonObj.getString("ano")));
 		filme.setGenero(jsonObj.getString("genero"));
 
@@ -70,7 +68,6 @@ public class Filme {
 		System.out.println(filme.getGenero());
 		
 		//Acrescentando atributos e valores
-		
 		jsonObj.put("sinopse", "Neste filme, o protagonista está começando a entender como manipular arquivos .json!");
 		
 		//Verificando como ficou o objeto JSON após a introdução de um novo atributo com valor
