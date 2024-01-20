@@ -2,15 +2,41 @@ package transporte;
 
 import java.util.Scanner;
 
+import cadastros.CRUD;
+
 public class App {
 
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);		
 		Menus menus = new Menus();
-				
-		int opcao;
+		CRUD crud = new CRUD();		
+		System.out.println("DADOS CARREGADOS: \n");
+		crud.runVeiculos();
+		System.out.println("----------------------");
+		crud.runMotoristas();
+		System.out.println("----------------------");
+		crud.runCobradores();
+		System.out.println("----------------------");
+		crud.runPassageiros();
+		System.out.println("----------------------");
+		crud.runPontos();
+		System.out.println("----------------------");
+		crud.runTrechos();
+		System.out.println("----------------------");
+		crud.runTrajetos();
+		System.out.println("----------------------");
+		crud.runJornadas();
+		System.out.println("----------------------");
+		crud.runEmbarques();
+		System.out.println("----------------------");
+		crud.runCheckpoints();
+		System.out.println("----------------------");
 		
+		
+	
+			
+		int opcao;
 				
 		do {
 			System.out.println("======= PAINEL DE CONTROLE - TRANSPORTE VIÁRIO =======");

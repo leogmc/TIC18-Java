@@ -3,9 +3,10 @@ package cadastros;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +15,6 @@ import java.util.Scanner;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import transporte.Cobrador;
 import transporte.Embarque;
@@ -27,6 +27,10 @@ import transporte.Trecho;
 import transporte.Veiculo;
 
 public class CRUD {
+
+	public CRUD() {
+		super();
+	}
 
 	private Scanner scanner = new Scanner(System.in);
 
@@ -41,25 +45,362 @@ public class CRUD {
 	private ArrayList<Trajeto> listaTrajetosJornada = new ArrayList<>();
 	private ArrayList<Jornada> listaJornadas = new ArrayList<>();
 	private ArrayList<Embarque> listaEmbarques = new ArrayList<>();
-	
-	//Método de inicialização
-	
-	public void inicializa() throws Exception {
-			
-		try( FileReader fr = new FileReader("veiculos.json")){
-		
-		
-		JSONArray lista = new JSONArray(new JSONTokener(fr));
-			
+
+	// Método de inicialização
+	public void runVeiculos() {
+		System.out.println("Veiculos: \n");
+
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("veiculos.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray veiculosArray = jsonRootObject.getJSONArray("veiculos");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < veiculosArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject veiculoObj = veiculosArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String modelo = veiculoObj.getString("modelo");
+				String placa = veiculoObj.getString("placa");
+
+				// Exemplo de uso dos dados
+				System.out.println("Veículo " + (i + 1));
+				System.out.println("Modelo: " + modelo);
+				System.out.println("Placa: " + placa);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
 		}
-		
-		ArrayList<>
-		
-		
-		
-		
-		
-		
+	}
+
+	// Método de inicialização
+	public void runMotoristas() {
+		System.out.println("Motoristas: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("motoristas.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray motoristasArray = jsonRootObject.getJSONArray("motoristas");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < motoristasArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject motoristaObj = motoristasArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String nome = motoristaObj.getString("nome");
+				String cpf = motoristaObj.getString("cpf");
+
+				// Exemplo de uso dos dados
+				System.out.println("Motorista " + (i + 1));
+				System.out.println("Nome: " + nome);
+				System.out.println("CPF: " + cpf);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runCobradores() {
+		System.out.println("Cobradores: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("cobradores.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray cobradoresArray = jsonRootObject.getJSONArray("cobradores");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < cobradoresArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject cobradorObj = cobradoresArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String nome = cobradorObj.getString("nome");
+				String cpf = cobradorObj.getString("cpf");
+
+				// Exemplo de uso dos dados
+				System.out.println("Cobrador " + (i + 1));
+				System.out.println("Nome: " + nome);
+				System.out.println("CPF: " + cpf);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runPassageiros() {
+		System.out.println("Passageiros: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("passageiros.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray passageirosArray = jsonRootObject.getJSONArray("passageiros");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < passageirosArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject passageiroObj = passageirosArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String nome = passageiroObj.getString("nome");
+				String cpf = passageiroObj.getString("cpf");
+				String tipoCartao = passageiroObj.getString("tipoCartao");
+
+				// Exemplo de uso dos dados
+				System.out.println("Passageiro " + (i + 1));
+				System.out.println("Nome: " + nome);
+				System.out.println("CPF: " + cpf);
+				System.out.println("Tipo do cartão: " + tipoCartao);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runPontos() {
+		System.out.println("Pontos de Parada: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("pontosDeParada.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray pontosArray = jsonRootObject.getJSONArray("pontosDeParada");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < pontosArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject pontoObj = pontosArray.getJSONObject(i);
+				
+				
+
+				// Obter os dados do veículo
+				String nomePonto = pontoObj.getString("ponto");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				PontoDeParada ponto = new PontoDeParada(nomePonto);			
+				listaPontosDeParada.add(ponto);
+				
+	
+				// Exemplo de uso dos dados
+				System.out.println("Ponto de parada: " + (i + 1));
+				System.out.println("Ponto: " + nomePonto);
+				System.out.println();
+			}
+			
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runTrechos() {
+		System.out.println("Trechos: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("trechos.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray trechosArray = jsonRootObject.getJSONArray("trechos");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < trechosArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject trechoObj = trechosArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String pontos = trechoObj.getString("pontos");
+				String intervalo = trechoObj.getString("intervalo");
+
+				// Exemplo de uso dos dados
+				System.out.println("Trecho " + (i + 1));
+				System.out.println("Pontos: " + pontos);
+				System.out.println("Intervalo estimado: " + intervalo);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runTrajetos() {
+		System.out.println("Trajetos: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("trajetos.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray trajetosArray = jsonRootObject.getJSONArray("trajetos");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < trajetosArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject trajetoObj = trajetosArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String trechos = trajetoObj.getString("trechos");
+
+				// Exemplo de uso dos dados
+				System.out.println("Trajeto " + (i + 1));
+				System.out.println("Trechos: " + trechos);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runJornadas() {
+		System.out.println("Jornadas: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("jornadas.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray jornadasArray = jsonRootObject.getJSONArray("jornadas");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < jornadasArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject jornadaObj = jornadasArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String trajetos = jornadaObj.getString("trajetos");
+				String motorista = jornadaObj.getString("motorista");
+				String veiculo = jornadaObj.getString("veiculo");
+
+				// Exemplo de uso dos dados
+				System.out.println("Jornada " + (i + 1));
+				System.out.println("Trajetos: " + trajetos);
+				System.out.println("Motorista: " + motorista);
+
+				try {
+					String cobrador = jornadaObj.getString("cobrador");
+					System.out.println("Cobrador: " + cobrador);
+				} catch (Exception e) {
+					System.out.println("Sem cobrador");
+				}
+
+				System.out.println("Veiculo: " + veiculo);
+				System.out.println();
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runEmbarques() {
+		System.out.println("Embarques: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("embarques.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray embarquesArray = jsonRootObject.getJSONArray("embarques");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < embarquesArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject embarqueObj = embarquesArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String passageiro = embarqueObj.getString("passageiro");
+				String pontoDeEmbarque = embarqueObj.getString("pontoDeEmbarque");
+				String horario = embarqueObj.getString("horario");
+
+				// Exemplo de uso dos dados
+				System.out.println("Embarque " + (i + 1));
+				System.out.println("Passageiro: " + passageiro);
+				System.out.println("Ponto de Embarque: " + pontoDeEmbarque);
+				System.out.println("Horário de embarque: " + horario);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
+	}
+
+	// Método de inicialização
+	public void runCheckpoints() {
+		System.out.println("Checkpoints: \n");
+		try {
+			// Ler o conteúdo do arquivo JSON como uma string
+			String jsonContent = new String(Files.readAllBytes(Paths.get("checkpoints.json")));
+
+			// Criar um objeto JSONObject a partir da string JSON
+			JSONObject jsonRootObject = new JSONObject(jsonContent);
+
+			// Obter a matriz de veículos do objeto raiz
+			JSONArray checkpointsArray = jsonRootObject.getJSONArray("checkpoints");
+
+			// Iterar sobre os veículos na matriz
+			for (int i = 0; i < checkpointsArray.length(); i++) {
+				// Obter o objeto do veículo atual
+				JSONObject checkpointObj = checkpointsArray.getJSONObject(i);
+
+				// Obter os dados do veículo
+				String trajetoSelecionado = checkpointObj.getString("trajetoSelecionado");
+				String checkpoint = checkpointObj.getString("checkpoint");
+
+				// Exemplo de uso dos dados
+				System.out.println("Checkpoint " + (i + 1));
+				System.out.println("Trajeto: " + trajetoSelecionado);
+				System.out.println("Horário: " + checkpoint);
+			}
+
+		} catch (Exception e) {
+			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
+		}
 	}
 
 	// Métodos de Cadastros
@@ -67,14 +408,21 @@ public class CRUD {
 	public void cadastrarVeiculo() throws Exception {
 
 		File arquivo = new File("veiculos.json");
-			
+
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
-				
-		FileWriter fw = new FileWriter(arquivo);
+
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("veiculos", new JSONArray());
+		}
 
 		while (true) {
 			System.out.println("Digite o modelo do veículo (ou digite 'x' para encerrar):");
@@ -92,17 +440,15 @@ public class CRUD {
 
 			System.out.println("Veículo cadastrado com sucesso!");
 			System.out.println(" ");
-				
-//			json.put("modelo", modelo);
-//			json.put("placa", placa);
-			
-			json.put("veiculos", listaVeiculos);
-				
 
+			// Adicionar o novo veículo ao array 'veiculos' no objeto JSON
+			json.getJSONArray("veiculos").put(new JSONObject().put("modelo", modelo).put("placa", placa));
 		}
-		
-		fw.write(json.toString());
-		fw.close();
+
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void cadastrarMotorista() throws Exception {
@@ -112,10 +458,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("motoristas", new JSONArray());
+		}
 
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
@@ -134,15 +487,14 @@ public class CRUD {
 			System.out.println("Motorista cadastrado com sucesso!");
 			System.out.println(" ");
 
-			json.put("nome", nome);
-			json.put("cpf", cpf);
-			
-			fw.write(json.toString());
-			
+			// Adicionar o novo motorista ao array 'motoristas' no objeto JSON
+			json.getJSONArray("motoristas").put(new JSONObject().put("nome", nome).put("cpf", cpf));
 		}
 
-		
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void cadastrarCobrador() throws Exception {
@@ -152,11 +504,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
-	
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("cobradores", new JSONArray());
+		}
 
 		while (true) {
 			System.out.println("Digite o nome: (ou digite 'x' para encerrar):");
@@ -171,20 +529,18 @@ public class CRUD {
 
 			Cobrador cobrador = new Cobrador(nome, cpf);
 			listaCobradores.add(cobrador);
-			
-			json.put("nome", nome);
-			json.put("cpf", cpf);
-			
-			fw.write(json.toString());json.put("nome", nome);
-			json.put("cpf", cpf);
-			
-			fw.write(json.toString());
-		
+
 			System.out.println("Cobrador cadastrado com sucesso!");
 			System.out.println(" ");
+
+			// Adicionar o novo motorista ao array 'motoristas' no objeto JSON
+			json.getJSONArray("cobradores").put(new JSONObject().put("nome", nome).put("cpf", cpf));
 		}
 
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void cadastrarPassageiro() throws Exception {
@@ -194,10 +550,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("passageiros", new JSONArray());
+		}
 
 		while (true) {
 
@@ -224,17 +587,18 @@ public class CRUD {
 			Passageiro passageiro = new Passageiro(nome, cpf, tipoCartao);
 			listaPassageiros.add(passageiro);
 
-			json.put("nome", nome);
-			json.put("cpf", cpf);
-			json.put("tipoCartao", tipoCartao);
-			
-			fw.write(json.toString());
+			// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+			json.getJSONArray("passageiros")
+					.put(new JSONObject().put("nome", nome).put("cpf", cpf).put("tipoCartao", tipoCartao));
 
 			System.out.println("Passageiro cadastrado com sucesso!");
 			System.out.println(" ");
 		}
 
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void cadastrarPontosDeParada() throws Exception {
@@ -244,12 +608,20 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("pontosDeParada", new JSONArray());
+		}
 
 		while (true) {
+
 			System.out.println("Digite o nome do ponto: (ou digite 'x' para encerrar):");
 			String nomePonto = scanner.nextLine();
 
@@ -260,15 +632,18 @@ public class CRUD {
 			PontoDeParada pontoDeParada = new PontoDeParada(nomePonto);
 			listaPontosDeParada.add(pontoDeParada);
 
-			json.put("pontoDeParada", pontoDeParada);
-				
-			fw.write(json.toString());
-		
+			// Adicionar o novo motorista ao array 'motoristas' no objeto JSON
+			json.getJSONArray("pontosDeParada").put(new JSONObject().put("ponto", nomePonto));
+
 			System.out.println("Ponto de parada cadastrado com sucesso!");
 			System.out.println(" ");
 		}
 
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
+
 	}
 
 	public void cadastrarTrecho() throws Exception {
@@ -278,10 +653,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("trechos", new JSONArray());
+		}
 
 		while (true) {
 			System.out.println("--------- Cadastro de trecho -----------");
@@ -319,11 +701,8 @@ public class CRUD {
 			Trecho trecho = new Trecho(pontos, intervalo);
 			listaTrechos.add(trecho);
 
-				
-			json.put("trecho", pontos);
-			json.put("duracaoEstimada", intervalo);
-			
-			fw.write(json.toString());
+			// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+			json.getJSONArray("trechos").put(new JSONObject().put("pontos", pontos).put("intervalo", String.valueOf(intervalo)));
 
 			System.out.println("Trecho cadastrado com sucesso!");
 			System.out.println(" ");
@@ -336,8 +715,10 @@ public class CRUD {
 			}
 		}
 
-		
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void cadastrarTrajeto() throws Exception {
@@ -347,10 +728,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("trajetos", new JSONArray());
+		}
 
 		try {
 			cadastrarTrecho();
@@ -392,17 +780,17 @@ public class CRUD {
 		Trajeto trajeto = new Trajeto(listaTrechosTrajeto);
 
 		listaTrajetos.add(trajeto);
-		
-		json.put("trajeto", listaTrechosTrajeto);
-		
-		
-		fw.write(json.toString());
+
+		// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+		json.getJSONArray("trajetos").put(new JSONObject().put("trechos", String.valueOf(listaTrechosTrajeto)));
 
 		System.out.println("Trajeto cadastrado com sucesso!");
 		System.out.println(" ");
-	
-		fw.close();
 
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void registraJornada() throws Exception {
@@ -412,10 +800,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("jornadas", new JSONArray());
+		}
 
 		// Exibindo os trajetos disponíveis
 		ArrayList<Trajeto> trajetos = getListaTrajetos();
@@ -501,33 +896,31 @@ public class CRUD {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, cobradorJornada, veiculoJornada);
 				listaJornadas.add(jornada);
 
-					
-				json.put("trajetos", trajetos);
-				json.put("motorista", motoristaJornada.getNome());
-				json.put("cobrador", cobradorJornada.getNome());
-				json.put("veiculo", veiculoJornada.getModelo());
-						
-				fw.write(json.toString());
+				// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+				json.getJSONArray("jornadas")
+						.put(new JSONObject().put("trajetos", String.valueOf(trajetoJornada)).put("motorista", motoristaJornada.getNome())
+								.put("cobrador", cobradorJornada.getNome()).put("veiculo", veiculoJornada.getModelo()));
 
 			} else {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, veiculoJornada);
 				listaJornadas.add(jornada);
 
-				json.put("trajetos", trajetos);
-				json.put("motorista", motoristaJornada.getNome());
-				json.put("veiculo", veiculoJornada.getModelo());
-						
-				fw.write(json.toString());
+				// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+				json.getJSONArray("jornadas").put(new JSONObject().put("trajetos", String.valueOf(trajetoJornada))
+						.put("motorista", motoristaJornada.getNome()).put("veiculo", veiculoJornada.getModelo()));
 			}
 		}
 
 		System.out.println("Jornada cadastrada com sucesso!");
 		System.out.println(" ");
 
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
-	public void registraInicioDeTrajeto(){
+	public void registraInicioDeTrajeto() {
 		// Exibindo as jornadas disponíveis
 		ArrayList<Jornada> jornadas = getListaJornadas();
 		for (int i = 0; i < jornadas.size(); i++) {
@@ -535,7 +928,7 @@ public class CRUD {
 			System.out.println("Jornada [" + (i + 1) + "] " + jornadas.get(i).getTrajetos());
 			System.out.println("Motorista: " + jornadas.get(i).getMotorista().getNome());
 			try {
-			System.out.println("Cobrador: " + jornadas.get(i).getCobrador().getNome());
+				System.out.println("Cobrador: " + jornadas.get(i).getCobrador().getNome());
 			} catch (NullPointerException e) {
 				System.out.println("Esta jornada não possui cobrador.");
 			}
@@ -598,16 +991,23 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("embarques", new JSONArray());
+		}
 
 		// Exibindo os passageiros disponíveis
 		ArrayList<Passageiro> passageiros = getListaPassageiros();
 		for (int i = 0; i < passageiros.size(); i++) {
 			System.out.println("[" + (i + 1) + "] " + passageiros.get(i).getNome());
-			System.out.println(passageiros.get(i).getCpf());
+			System.out.println("CPF: " + passageiros.get(i).getCpf());
 			System.out.println("Tipo do cartão: " + passageiros.get(i).getTipoCartao());
 		}
 
@@ -632,18 +1032,17 @@ public class CRUD {
 
 		Embarque registro = new Embarque(passageiro, pontoDeEmbarque);
 		listaEmbarques.add(registro);
-	
-		json.put("passageiro", passageiro.getNome());
-		json.put("cpf", passageiro.getCpf());
-		json.put("tipoCartao", passageiro.getTipoCartao());
-		json.put("horarioEmbarque", registro.getDataHoraEmbarque());
-				
-		fw.write(json.toString());
+
+		// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+		json.getJSONArray("embarques").put(new JSONObject().put("passageiro", passageiro.getNome())
+				.put("pontoDeEmbarque", pontoDeEmbarque.getPonto()).put("horario", registro.getDataHoraEmbarque().toString()));
 
 		exibirInformacoes();
 
-
-		fw.close();
+		// Escrever o objeto JSON atualizado no arquivo
+		try (FileWriter fw = new FileWriter(arquivo)) {
+			fw.write(json.toString());
+		}
 	}
 
 	public void registraCheckpoint() throws Exception {
@@ -653,10 +1052,17 @@ public class CRUD {
 		if (!arquivo.exists()) {
 			arquivo.createNewFile();
 		}
-		
-		JSONObject json = new JSONObject();
 
-		FileWriter fw = new FileWriter(arquivo, true);
+		JSONObject json;
+
+		// Verificar se o arquivo já contém informações
+		if (arquivo.length() > 0) {
+			String conteudoArquivo = new String(Files.readAllBytes(arquivo.toPath()));
+			json = new JSONObject(conteudoArquivo);
+		} else {
+			json = new JSONObject();
+			json.put("checkpoints", new JSONArray());
+		}
 
 		// Exibindo as jornadas disponíveis
 		ArrayList<Jornada> jornadas = getListaJornadas();
@@ -698,12 +1104,15 @@ public class CRUD {
 						Date novaData = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").parse(checkpoint);
 						trajetoSelecionado.setCheckpoint(novaData);
 						System.out.println("Checkpoint cadastrado com sucesso para: " + novaData);
-					
-						json.put("jornada", jornadaSelecionada);
-						json.put("trajeto", trajetoSelecionado);
-						json.put("checkpoint", novaData);
-										
-						fw.write(json.toString());
+
+						// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
+						json.getJSONArray("checkpoints").put(new JSONObject()
+								.put("trajetoSelecionado", trajetoSelecionado).put("checkpoint", novaData));
+
+						// Escrever o objeto JSON atualizado no arquivo
+						try (FileWriter fw = new FileWriter(arquivo)) {
+							fw.write(json.toString());
+						}
 
 					} catch (ParseException e) {
 						System.out.println("Formato de data inválido. Por favor, insira a data no formato correto.");
@@ -712,11 +1121,9 @@ public class CRUD {
 			}
 		}
 
-		fw.close();
 	}
 
-	
-	//Método para alterar dados
+	// Método para alterar dados
 	public void alterar(String nomeDoArquivo) throws Exception {
 
 		// Criar um ArrayList para armazenar as strings
@@ -728,7 +1135,6 @@ public class CRUD {
 
 		fr = new FileReader(arquivo);
 		BufferedReader br = new BufferedReader(fr);
-		
 
 		while (br.ready()) {
 			String linha = br.readLine();
@@ -814,7 +1220,7 @@ public class CRUD {
 
 	}
 
-	//Métodos para excluir dados
+	// Métodos para excluir dados
 	public void excluir(String nomeDoArquivo) throws Exception {
 
 		// Criar um ArrayList para armazenar as strings
@@ -864,7 +1270,7 @@ public class CRUD {
 		System.out.println("Exclusão realizada com sucesso!");
 
 	}
-	
+
 	public void fecharScanner() {
 		scanner.close();
 	}
