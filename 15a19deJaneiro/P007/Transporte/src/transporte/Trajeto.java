@@ -22,6 +22,11 @@ public class Trajeto {
 		this.trechos.addAll(trechos);
 	}
 
+	//Construtor que recebe String
+	public Trajeto(String trechos2) {
+	}
+
+
 	public ArrayList<Trecho> getTrechos() {
 		return trechos;
 	}

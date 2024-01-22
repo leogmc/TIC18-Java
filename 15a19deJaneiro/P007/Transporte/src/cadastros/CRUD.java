@@ -69,6 +69,10 @@ public class CRUD {
 				String modelo = veiculoObj.getString("modelo");
 				String placa = veiculoObj.getString("placa");
 
+				// CONVERTENDO EM OBJETO JAVA
+				Veiculo veiculo = new Veiculo(modelo, placa);
+				listaVeiculos.add(veiculo);
+
 				// Exemplo de uso dos dados
 				System.out.println("Veículo " + (i + 1));
 				System.out.println("Modelo: " + modelo);
@@ -102,7 +106,11 @@ public class CRUD {
 				// Obter os dados do veículo
 				String nome = motoristaObj.getString("nome");
 				String cpf = motoristaObj.getString("cpf");
-
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Motorista motorista = new Motorista(nome,cpf);
+				listaMotoristas.add(motorista);
+				
 				// Exemplo de uso dos dados
 				System.out.println("Motorista " + (i + 1));
 				System.out.println("Nome: " + nome);
@@ -136,6 +144,10 @@ public class CRUD {
 				// Obter os dados do veículo
 				String nome = cobradorObj.getString("nome");
 				String cpf = cobradorObj.getString("cpf");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Cobrador cobrador = new Cobrador(nome,cpf);
+				listaCobradores.add(cobrador);
 
 				// Exemplo de uso dos dados
 				System.out.println("Cobrador " + (i + 1));
@@ -171,6 +183,10 @@ public class CRUD {
 				String nome = passageiroObj.getString("nome");
 				String cpf = passageiroObj.getString("cpf");
 				String tipoCartao = passageiroObj.getString("tipoCartao");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Passageiro passageiro = new Passageiro(nome, cpf, tipoCartao);
+				listaPassageiros.add(passageiro);
 
 				// Exemplo de uso dos dados
 				System.out.println("Passageiro " + (i + 1));
@@ -202,23 +218,20 @@ public class CRUD {
 			for (int i = 0; i < pontosArray.length(); i++) {
 				// Obter o objeto do veículo atual
 				JSONObject pontoObj = pontosArray.getJSONObject(i);
-				
-				
 
 				// Obter os dados do veículo
 				String nomePonto = pontoObj.getString("ponto");
-				
+
 				// CONVERTENDO EM OBJETO JAVA
-				PontoDeParada ponto = new PontoDeParada(nomePonto);			
+				PontoDeParada ponto = new PontoDeParada(nomePonto);
 				listaPontosDeParada.add(ponto);
-				
-	
+
 				// Exemplo de uso dos dados
 				System.out.println("Ponto de parada: " + (i + 1));
 				System.out.println("Ponto: " + nomePonto);
 				System.out.println();
 			}
-			
+
 
 		} catch (Exception e) {
 			System.out.println("Não foi possível carregar os dados. O arquivo possívelmente está vazio.");
@@ -246,6 +259,10 @@ public class CRUD {
 				// Obter os dados do veículo
 				String pontos = trechoObj.getString("pontos");
 				String intervalo = trechoObj.getString("intervalo");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Trecho trecho = new Trecho(pontos, Integer.parseInt(intervalo));
+				listaTrechos.add(trecho);
 
 				// Exemplo de uso dos dados
 				System.out.println("Trecho " + (i + 1));
@@ -279,6 +296,11 @@ public class CRUD {
 
 				// Obter os dados do veículo
 				String trechos = trajetoObj.getString("trechos");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Trajeto trajeto = new Trajeto(trechos);
+				listaTrajetos.add(trajeto);
+				
 
 				// Exemplo de uso dos dados
 				System.out.println("Trajeto " + (i + 1));
@@ -313,6 +335,10 @@ public class CRUD {
 				String trajetos = jornadaObj.getString("trajetos");
 				String motorista = jornadaObj.getString("motorista");
 				String veiculo = jornadaObj.getString("veiculo");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Jornada jornada = new Jornada(trajetos, motorista, veiculo);
+				listaJornadas.add(jornada);
 
 				// Exemplo de uso dos dados
 				System.out.println("Jornada " + (i + 1));
@@ -357,6 +383,10 @@ public class CRUD {
 				String passageiro = embarqueObj.getString("passageiro");
 				String pontoDeEmbarque = embarqueObj.getString("pontoDeEmbarque");
 				String horario = embarqueObj.getString("horario");
+				
+				// CONVERTENDO EM OBJETO JAVA
+				Embarque embarque = new Embarque(passageiro, pontoDeEmbarque, horario);
+				listaEmbarques.add(embarque);
 
 				// Exemplo de uso dos dados
 				System.out.println("Embarque " + (i + 1));
@@ -391,7 +421,7 @@ public class CRUD {
 				// Obter os dados do veículo
 				String trajetoSelecionado = checkpointObj.getString("trajetoSelecionado");
 				String checkpoint = checkpointObj.getString("checkpoint");
-
+				
 				// Exemplo de uso dos dados
 				System.out.println("Checkpoint " + (i + 1));
 				System.out.println("Trajeto: " + trajetoSelecionado);
@@ -671,7 +701,8 @@ public class CRUD {
 
 			// Exibindo os pontos de parada disponíveis
 			ArrayList<PontoDeParada> pontosDeParada = getListaPontosDeParada();
-			for (int i = 0; i < pontosDeParada.size(); i++) {
+
+			for (int i = 0; i < listaPontosDeParada.size(); i++) {
 				System.out.println("[" + (i + 1) + "] " + pontosDeParada.get(i).getPonto());
 			}
 
@@ -684,7 +715,7 @@ public class CRUD {
 			scanner.nextLine(); // Limpar o buffer
 
 			// Verificar se as opções são válidas
-			if (pontoA < 1 || pontoA > pontosDeParada.size() || pontoB < 1 || pontoB > pontosDeParada.size()) {
+			if (pontoA < 1 || pontoA > pontosDeParada.size() || pontoB < 1 || pontoB > listaPontosDeParada.size()) {
 				System.out.println("Opção inválida.");
 				break; // Sai do loop se a opção for inválida
 			}
@@ -702,7 +733,8 @@ public class CRUD {
 			listaTrechos.add(trecho);
 
 			// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
-			json.getJSONArray("trechos").put(new JSONObject().put("pontos", pontos).put("intervalo", String.valueOf(intervalo)));
+			json.getJSONArray("trechos")
+					.put(new JSONObject().put("pontos", pontos).put("intervalo", String.valueOf(intervalo)));
 
 			System.out.println("Trecho cadastrado com sucesso!");
 			System.out.println(" ");
@@ -898,8 +930,9 @@ public class CRUD {
 
 				// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
 				json.getJSONArray("jornadas")
-						.put(new JSONObject().put("trajetos", String.valueOf(trajetoJornada)).put("motorista", motoristaJornada.getNome())
-								.put("cobrador", cobradorJornada.getNome()).put("veiculo", veiculoJornada.getModelo()));
+						.put(new JSONObject().put("trajetos", String.valueOf(trajetoJornada))
+								.put("motorista", motoristaJornada.getNome()).put("cobrador", cobradorJornada.getNome())
+								.put("veiculo", veiculoJornada.getModelo()));
 
 			} else {
 				Jornada jornada = new Jornada(trajetos, motoristaJornada, veiculoJornada);
@@ -1034,8 +1067,10 @@ public class CRUD {
 		listaEmbarques.add(registro);
 
 		// Adicionar o novo passageiro ao array 'passageiros' no objeto JSON
-		json.getJSONArray("embarques").put(new JSONObject().put("passageiro", passageiro.getNome())
-				.put("pontoDeEmbarque", pontoDeEmbarque.getPonto()).put("horario", registro.getDataHoraEmbarque().toString()));
+		json.getJSONArray("embarques")
+				.put(new JSONObject().put("passageiro", passageiro.getNome())
+						.put("pontoDeEmbarque", pontoDeEmbarque.getPonto())
+						.put("horario", registro.getDataHoraEmbarque().toString()));
 
 		exibirInformacoes();
 

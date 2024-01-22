@@ -26,6 +26,10 @@ public class Jornada {
 		this.veiculo = veiculo;	
 	}
 		
+	public Jornada(String trajetos, String motorista2, String veiculo2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public ArrayList<Trajeto> getTrajetos() {
 		return trajetosJornada;
 	}

@@ -7,8 +7,12 @@ import java.util.Scanner;
 public class Menus {
 
 	Scanner scanner = new Scanner(System.in);
-	CRUD crud = new CRUD();
-
+	CRUD crud;
+	
+	public Menus(CRUD crud) {
+		this.crud = crud;
+	}
+	
 	public void runMenuCadastro() {
 
 		int opcao;

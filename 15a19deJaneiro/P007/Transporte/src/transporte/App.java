@@ -9,8 +9,8 @@ public class App {
 	public static void main(String[] args) {
 
 		Scanner scanner = new Scanner(System.in);		
-		Menus menus = new Menus();
 		CRUD crud = new CRUD();		
+		Menus menus = new Menus(crud);
 		System.out.println("DADOS CARREGADOS: \n");
 		crud.runVeiculos();
 		System.out.println("----------------------");

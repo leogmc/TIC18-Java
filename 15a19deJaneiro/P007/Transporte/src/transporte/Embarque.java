@@ -13,6 +13,10 @@ public class Embarque {
         this.dataHoraEmbarque = new Date(); // Obtém a data e hora atuais
     }
 
+	public Embarque(String passageiro2, String pontoDeEmbarque2, String horario) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Passageiro getPassageiro() {
 		return passageiro;
 	}
