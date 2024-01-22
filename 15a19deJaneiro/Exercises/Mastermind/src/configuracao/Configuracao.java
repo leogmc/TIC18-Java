@@ -8,8 +8,16 @@ public class Configuracao {
 		return alfabeto;
 	}
 
-	public void setAlfabeto(String alfabeto) {
+	public void setAlfabeto(String alfabeto) throws Exception {
+		
+		if ((alfabeto == null) || (alfabeto.length() < 2)){
+			Exception e = new Exception("O alfabeto deve possuir mais de 1 caracter");
+			 throw e;
+		}
+				
 		this.alfabeto = alfabeto;
 	}
+	
+	
 	
 }
