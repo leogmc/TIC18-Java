@@ -3,7 +3,9 @@ package configuracao;
 public class Configuracao {
 	
 	private String alfabeto;
+	private int tamanhoSenha;
 
+	
 	public String getAlfabeto() {
 		return alfabeto;
 	}
@@ -17,6 +19,23 @@ public class Configuracao {
 				
 		this.alfabeto = alfabeto;
 	}
+	
+	public int getTamanhoSenha() {
+		return tamanhoSenha;
+	}
+
+	public void setTamanhoSenha(int tamanhoSenha) throws Exception {
+		
+		if (tamanhoSenha < 0) {
+			Exception e = new Exception("Senha deve ter ao menos 1 caracter");
+			throw e;
+		}
+					
+		this.tamanhoSenha = tamanhoSenha;
+	}
+
+	
+	
 	
 	
 	

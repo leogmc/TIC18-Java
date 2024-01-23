@@ -46,6 +46,40 @@ class TestConfiguracao {
 				
 			//não pode ter aceitado esse alfabeto:
 			assertNotEquals("a", configuracao.getAlfabeto());
+			
+			
+			//DEFININDO TAMANHO DA SENHA
+			
+		
+			//definindo um alfabeto (o teste do método que define o alfabeto já existe!)
+			alfabeto = "abcd";
+			try {
+				configuracao.setAlfabeto(alfabeto);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			//Caso geral: um tamanho de senha válido (entre 1 e 4)
+			int tam = 2;
+			try {
+				configuracao.setTamanhoSenha(tam);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				fail("Não deveria gerar exception aqui");
+				e1.printStackTrace();
+			}
+			assertEquals(tam, configuracao.getTamanhoSenha());
+			
+			//Caso 1: tentar inserir uma senha de tamanho negativo
+			tam = -1;
+			try {
+				configuracao.setTamanhoSenha(tam);
+			} catch (Exception e) {
+				assertEquals("Senha deve ter ao menos 1 caracter", e.getMessage());
+			}
+			//o tamanho da senha não pode ter sido aceito
+			assertNotEquals(tam, configuracao.getTamanhoSenha());
 		
 		
 		
