@@ -10,7 +10,7 @@ class TestConfiguracao {
 	void testSetAlfabeto() {
 		Configuracao configuracao = new Configuracao();
 		
-		//Caso geral: salvar uma senha válida
+		//Caso geral: salvar um alfabeto válido
 		String alfabeto = "abcd";
 		
 		try {

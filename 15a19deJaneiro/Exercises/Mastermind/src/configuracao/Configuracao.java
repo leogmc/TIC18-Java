@@ -31,8 +31,6 @@ public class Configuracao {
 		return alfabeto;
 	}
 
-	
-
 	public void setAlfabeto(String alfabeto) throws Exception {
 		
 		if ((alfabeto == null) || (alfabeto.length() < 2)){
@@ -75,10 +73,6 @@ public class Configuracao {
 		
 		this.maxTentativas = maxTentativas;
 	}
-
-	
-	
-	
 	
 	
 }
