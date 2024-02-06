@@ -1,27 +1,20 @@
 package academico;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 
 @Entity
 public class Estudante {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	
 	private Integer Id;
-	
-	@ManyToOne
-	private Curso Curso;
-	
 	private String Nome;
 	private String Email;
 	private String Matricula;
@@ -30,11 +23,9 @@ public class Estudante {
 		super();
 	}
 
-
-	public Estudante(Integer id, academico.Curso curso, String nome, String email, String matricula) {
+	public Estudante(Integer id, String nome, String email, String matricula) {
 		super();
 		Id = id;
-		Curso = curso;
 		Nome = nome;
 		Email = email;
 		Matricula = matricula;
@@ -77,55 +68,28 @@ public class Estudante {
 		return "Estudante [Id=" + Id + ", Nome=" + Nome + ", Email=" + Email + ", Matricula=" + Matricula + "]";
 	}
 	
-	
-	
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	public static void main(String[] args) {
+	public static void main(String[] args) {
+		
+//		Estudante e1 = new Estudante(null,"Tõe","toe@tutu","111111");
+//		Estudante e2 = new Estudante(null,"Lia","lia@tutu","222222");
+//		Estudante e3 = new Estudante(null,"Tuca","tuca@tutu","333333");
 //		
-////		Estudante e1 = new Estudante(null,"Tõe","toe@tutu","111111");
-////		Estudante e2 = new Estudante(null,"Lia","lia@tutu","222222");
-////		Estudante e3 = new Estudante(null,"Tuca","tuca@tutu","333333");
-////		
-//		EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_academico");
-//		EntityManager em = emf.createEntityManager();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("unit_academico");
+		EntityManager em = emf.createEntityManager();
+		
+		Estudante r = em.find(Estudante.class, 2);
+		System.out.println(r);
 //		
-//		Estudante r = em.find(Estudante.class, 2);
-//		System.out.println(r);
-////		
-////		em.getTransaction().begin();
-////		em.persist(e1);
-////		em.persist(e2);
-////		em.persist(e3);
-////		em.getTransaction().commit();
-////		em.close();
-////		emf.close();
-////		
-////	}
-////		
+//		em.getTransaction().begin();
+//		em.persist(e1);
+//		em.persist(e2);
+//		em.persist(e3);
+//		em.getTransaction().commit();
+		em.close();
+		emf.close();
+		
+	}
+		
 }
 	
 	
