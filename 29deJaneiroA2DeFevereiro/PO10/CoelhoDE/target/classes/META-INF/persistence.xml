@@ -5,14 +5,14 @@
     http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
 
-	<persistence-unit name="unit_academico" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="unit_coelho" transaction-type="RESOURCE_LOCAL">
 	<properties>
 		<property name="javax.persistence.jdbc.url"
-			value="jdbc:mysql://u7afqwl9m3yl3mcq:jfOUziPmbdH0J1RsWoid@bpcnr9txoeuciivb7vi3-mysql.services.clever-cloud.com:3306/bpcnr9txoeuciivb7vi3" />
+			value="jdbc:mysql://udf8zrpkzu8ton5w:n6wO8mX3pmbP8APny97i@bfu2ibivhuetgnipve0p-mysql.services.clever-cloud.com:3306/bfu2ibivhuetgnipve0p" />
 
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-		<property name="javax.persistence.jdbc.user" value="u7afqwl9m3yl3mcq" />
-		<property name="javax.persistence.jdbc.password" value="jfOUziPmbdH0J1RsWoid" />
+		<property name="javax.persistence.jdbc.user" value="udf8zrpkzu8ton5w" />
+		<property name="javax.persistence.jdbc.password" value="n6wO8mX3pmbP8APny97i" />
 
 		<property name="hibernate.hbm2ddl.auto" value="update" />
 
