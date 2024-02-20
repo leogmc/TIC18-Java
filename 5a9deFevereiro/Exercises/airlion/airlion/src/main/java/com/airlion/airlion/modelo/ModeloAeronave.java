@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Modeloeronave {
+public class ModeloAeronave {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -15,11 +15,11 @@ public class Modeloeronave {
 	
 	
 
-	public Modeloeronave() {
+	public ModeloAeronave() {
 		super();
 	}
 
-	public Modeloeronave(Long id, String fabricante, String nome) {
+	public ModeloAeronave(Long id, String fabricante, String nome) {
 		super();
 		this.id = id;
 		this.fabricante = fabricante;
