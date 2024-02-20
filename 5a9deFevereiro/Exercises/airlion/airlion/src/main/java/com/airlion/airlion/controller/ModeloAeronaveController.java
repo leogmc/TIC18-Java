@@ -18,18 +18,16 @@ public class ModeloAeronaveController {
 	private ModeloAeronaveRepository modeloAeronaveRepository;
 	
 	@GetMapping
-	// RECEBER DOIS PARAMETROS, SE UM FOR NULO... SE O OUTRO FOR NULO...
-	public List<ModeloAeronave> listaModeloAeronaves(String parametro) {
+	public List<ModeloAeronave> listaModeloAeronaves(String nome, String fabricante) {
 		List<ModeloAeronave> listaModeloAeronaves = new ArrayList<>();
 		
-		//Verifica se o parametro é nulo
-		if (parametro == null) {
-		List<ModeloAeronave> listaModeloAeronaves = (ArrayList<ModeloAeronave>) modeloAeronaveRepository.findAll();
-		} else if (parametro == "fabricante") {
-			listaModeloAeronaves = (ArrayList<ModeloAeronave>) modeloAeronaveRepository.findByfabricante(parametro);
+		if (nome != null ) {
+			listaModeloAeronaves = (ArrayList<ModeloAeronave>) modeloAeronaveRepository.findBynome(nome);		
+		} else if (fabricante != null) {
+			listaModeloAeronaves = (ArrayList<ModeloAeronave>) modeloAeronaveRepository.findByfabricante(fabricante);
+	 	} else {
+			listaModeloAeronaves = (ArrayList<ModeloAeronave>) modeloAeronaveRepository.findAll();
 		}
-		
-		
 		return listaModeloAeronaves;
 	}
 
