@@ -1,4 +1,4 @@
-INSERT INTO USUARIO(name, email, senha) VALUES ('mestre', 'mestre@email.com', 'degas');
-INSERT INTO USUARIO(name, email, senha) VALUES ('zangado', 'zangado@email.com', 'degas');
-INSERT INTO USUARIO(name, email, senha) VALUES ('atchim', 'atchim@email.com', 'degas');
-INSERT INTO USUARIO(name, email, senha) VALUES ('soneca', 'soneca@email.com', 'degas');
+INSERT INTO USUARIO (nome, email, senha) VALUES ('mestre', 'mestre@tutu', 'mestre');
+INSERT INTO USUARIO (nome, email, senha) VALUES ('zangado', 'zangado@tutu', 'zangado');
+INSERT INTO USUARIO (nome, email, senha) VALUES ('atchim', 'atchim@tutu', 'atchim');
+INSERT INTO USUARIO (nome, email, senha) VALUES ('soneca', 'soneca@tutu', 'soneca');

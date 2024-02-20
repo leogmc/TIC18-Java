@@ -1,9 +1,16 @@
 package com.leosoft.redesocial.modelo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Usuario {
 	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	private String name;
+	private String nome;
 	private String email;
 	private String senha;
 	
@@ -14,7 +21,7 @@ public class Usuario {
 	public Usuario(Long id, String name, String email, String senha) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.nome = name;
 		this.email = email;
 		this.senha = senha;
 	}
@@ -28,11 +35,11 @@ public class Usuario {
 	}
 
 	public String getName() {
-		return name;
+		return nome;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		this.nome = name;
 	}
 
 	public String getEmail() {

@@ -1,40 +1,36 @@
 package com.leosoft.redesocial.controller;
 
 import java.util.ArrayList;
-
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.leosoft.redesocial.controller.DTO.UsuarioDTO;
 import com.leosoft.redesocial.modelo.Usuario;
+import com.leosoft.redesocial.repository.UsuarioRepository;
 
 @RestController
+@RequestMapping("/usuario/")
 public class UsuarioController {
-	
-	
-//	@RequestMapping("/listausuarios")
-//	public ArrayList<Usuario> listUsuarios() {
-//		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-//		Usuario u1 = new Usuario((long)21,"leogmc","leo@gmail.com","1234");
-//		Usuario u2 = new Usuario((long)20,"lufecr","luiz@gmail.com","7890");
-//		Usuario u3 = new Usuario((long)30,"matue","30praum@gmail.com","7777");
-//		
-//		usuarios.add(u1);
-//		usuarios.add(u2);
-//		usuarios.add(u3);
-//		
-//		return usuarios;
-//	}
-	
-	@RequestMapping("/listausuarios")
-	public ArrayList<UsuarioDTO> listUsuarios() {
-		ArrayList<UsuarioDTO> usuarios = new ArrayList<UsuarioDTO>();
-		usuarios.add(new UsuarioDTO (new Usuario((long)21,"leogmc","leo@gmail.com","1234")));
-		usuarios.add(new UsuarioDTO (new Usuario((long)20,"lufecr","luiz@gmail.com","7890")));
-		usuarios.add(new UsuarioDTO (new Usuario((long)30,"matue","30praum@gmail.com","7777")));
 
-		
-		return usuarios;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@GetMapping
+	public List<UsuarioDTO> listaUsuarios(String nome) {
+		List<Usuario> listaUsuarios = new ArrayList<>();
+		//Verifica se o parametro é nulo
+		if (nome == null) {
+			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findAll();
+		} else {
+			listaUsuarios = (ArrayList<Usuario>) usuarioRepository.findBynome(nome);
+		}
+		List<UsuarioDTO> lista = new ArrayList<UsuarioDTO>();
+		for (Usuario u : listaUsuarios) {
+			UsuarioDTO ud = new UsuarioDTO(u);
+			lista.add(ud);
+		}
+		return lista;
 	}
-
 }
