@@ -26,12 +26,6 @@ public class UsuarioDTO {
 		this.name = usuario.getName();
 		this.email = usuario.getEmail();
 	}
-
-	
-	
-	
-	
-	
 	
 
 }
