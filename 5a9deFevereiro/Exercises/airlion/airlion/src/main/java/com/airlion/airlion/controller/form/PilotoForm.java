@@ -4,37 +4,42 @@ import com.airlion.airlion.modelo.Piloto;
 
 public class PilotoForm {
 	
-	private Long id;
 	private String nome;
+	private String numbreve;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+
 	public String getNome() {
 		return nome;
 	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getNumbreve() {
+		return numbreve;
+	}
+
+	public void setNumbreve(String numbreve) {
+		this.numbreve = numbreve;
 	}
 	
 	public PilotoForm() {
 		super();
 	}
-	public PilotoForm(Long id, String nome) {
+
+	public PilotoForm(String nome, String numbreve) {
 		super();
-		this.id = id;
 		this.nome = nome;
+		this.numbreve = numbreve;
 	}
-	
+
 	//Métodos
 	public Piloto toPiloto(){
 		Piloto piloto = new Piloto();
 		
-		piloto.setId(id);
 		piloto.setNome(nome);
+		piloto.setNumBreve(numbreve);
 		
 		return piloto;
 	}
