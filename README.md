@@ -1,2 +1,5 @@
 # TIC18-Java
-Esta pasta tem como objetivo fazer parte da atividade PO-10
+
+Aluno: Leandro Garcia M. Cerqueira
+Turma: Java
+Este repositório tem como objetivo fazer parte do módulo II (Java Básico) da Residência TIC18
