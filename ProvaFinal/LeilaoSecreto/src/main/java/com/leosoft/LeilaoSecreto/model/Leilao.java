@@ -13,8 +13,8 @@ public class Leilao {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private BigDecimal valorMinimo;
-	private boolean statusAberto;
+	private BigDecimal valor_minimo;
+	private boolean status_aberto;
 	
 	public Leilao() {
 		super();
@@ -24,8 +24,8 @@ public class Leilao {
 		super();
 		this.id = id;
 		this.descricao = descricao;
-		this.valorMinimo = valorMinimo;
-		this.statusAberto = statusAberto;
+		this.valor_minimo = valorMinimo;
+		this.status_aberto = statusAberto;
 	}
 
 	public Long getId() {
@@ -45,19 +45,19 @@ public class Leilao {
 	}
 
 	public BigDecimal getValorMinimo() {
-		return valorMinimo;
+		return valor_minimo;
 	}
 
 	public void setValorMinimo(BigDecimal valorMinimo) {
-		this.valorMinimo = valorMinimo;
+		this.valor_minimo = valorMinimo;
 	}
 
 	public boolean isStatusAberto() {
-		return statusAberto;
+		return status_aberto;
 	}
 
 	public void setStatusAberto(boolean statusAberto) {
-		this.statusAberto = statusAberto;
+		this.status_aberto = statusAberto;
 	}
 	
 	
